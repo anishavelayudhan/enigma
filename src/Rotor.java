@@ -16,7 +16,7 @@ public class Rotor {
     
     public void setOrder(int[] chosenOrder) {
         for (int i = 0; i < ROTOR_SLOTS; i++) {
-            switch (chosenOrder[i]) {
+            switch (chosenOrder[ROTOR_SLOTS - 1 - i]) {
                 case 1:
                     rotors[i] = ROTOR_I;
                     break;
@@ -33,7 +33,7 @@ public class Rotor {
 
     public void setPositions(char[] startPositions) {
         for (int i = 0; i < ROTOR_SLOTS; i++) {
-            positions[i] = startPositions[i] - 'A';
+            positions[i] = startPositions[ROTOR_SLOTS - 1 - i] - 'A';
         }
     }
 
@@ -66,11 +66,11 @@ public class Rotor {
             } else {
                 index = ((encodedLetter - 'A' + positions[rotor]) % 26);
             }
-            System.out.println("\npos index " + positions[rotor]);
-            System.out.println("pos letter " + (char)(positions[rotor] + 'A'));
-            System.out.println("encode index " + index);          
+            // System.out.println("\npos index " + positions[rotor]);
+            // System.out.println("pos letter " + (char)(positions[rotor] + 'A'));
+            // System.out.println("encode index " + index);          
             encodedLetter = rotors[rotor].getWiring()[index];
-            System.out.println("encode letter " + encodedLetter); 
+            // System.out.println("encode letter " + encodedLetter); 
         }
 
         return encodedLetter;
@@ -83,8 +83,8 @@ public class Rotor {
     
         for (int rotor = ROTOR_SLOTS - 1; rotor >= 0; rotor--) {
             int index = ((encodedLetter - 'A') + positions[rotor] + 26) % 26;
-            System.out.println(encodedLetter);
-            System.out.println(encodedLetter - 'A');
+            // System.out.println(encodedLetter);
+            // System.out.println(encodedLetter - 'A');
             
             for (int i = 0; i < 26; i++) {
                 if (rotors[rotor].getWiring()[i] == (char)(index + 'A')) {
@@ -92,13 +92,13 @@ public class Rotor {
                     if (wiringIndex < 0) {
                         wiringIndex += 26;
                     }
-                    System.out.println((wiringIndex));
+                    // System.out.println((wiringIndex));
                     break;
                 }
             }
 
             encodedLetter = (char)(wiringIndex + 'A');
-            System.out.println("Rotor " + (rotor + 1) + " backward encoding: " + encodedLetter);
+            // System.out.println("Rotor " + (rotor + 1) + " backward encoding: " + encodedLetter);
         }
     
         return encodedLetter;
