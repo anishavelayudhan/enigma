@@ -46,10 +46,10 @@ public class Rotor {
     public void rotate() {
         positions[0] = (positions[0] + 1) % 26;
 
-        if (positions[0] == (rotors[0].getNotch() - 'A')) {
+        if (positions[0] == (rotors[0].getNotch() - 'A' + 1) || positions[0] == 0) {
             positions[1] = (positions[1] + 1) % 26;
 
-            if (positions[1] == (rotors[1].getNotch() - 'A')) {
+            if (positions[1] == (rotors[1].getNotch() - 'A' + 1) || positions[1] == 0) {
                 positions[2] = (positions[2] + 1) % 26;
             }
         }
@@ -66,7 +66,11 @@ public class Rotor {
             } else {
                 index = ((encodedLetter - 'A' + positions[rotor]) % 26);
             }
+            System.out.println("\npos index " + positions[rotor]);
+            System.out.println("pos letter " + (char)(positions[rotor] + 'A'));
+            System.out.println("encode index " + index);          
             encodedLetter = rotors[rotor].getWiring()[index];
+            System.out.println("encode letter " + encodedLetter); 
         }
 
         return encodedLetter;
@@ -75,24 +79,28 @@ public class Rotor {
 
     public char encodeBackward(char c) {
         char encodedLetter = c;
-
+        int wiringIndex = 0;
+    
         for (int rotor = ROTOR_SLOTS - 1; rotor >= 0; rotor--) {
-            int index = ((encodedLetter - 'A' + positions[rotor]) % 26);
-            int wiringIndex = -1;
-
+            int index = ((encodedLetter - 'A') + positions[rotor] + 26) % 26;
+            System.out.println(encodedLetter);
+            System.out.println(encodedLetter - 'A');
+            
             for (int i = 0; i < 26; i++) {
-                if (rotors[rotor].getWiring()[i] == (char) (index + 'A')) {
+                if (rotors[rotor].getWiring()[i] == (char)(index + 'A')) {
                     wiringIndex = (i - positions[rotor]) % 26;
                     if (wiringIndex < 0) {
                         wiringIndex += 26;
                     }
+                    System.out.println((wiringIndex));
                     break;
                 }
             }
 
-            encodedLetter = (char) (wiringIndex + 'A');
+            encodedLetter = (char)(wiringIndex + 'A');
+            System.out.println("Rotor " + (rotor + 1) + " backward encoding: " + encodedLetter);
         }
-
+    
         return encodedLetter;
     }
 }
