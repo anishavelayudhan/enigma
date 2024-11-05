@@ -26,6 +26,12 @@ public class Enigma {
         return new String(outputMessage);
     }
 
+    public static void setPositions (char[] s) {
+        char temp = s[0];
+        s[0] = s[2];
+        s[2] = temp;
+    }
+
     public static boolean validPositions (char[] s) {
         boolean isValid = false;
 
@@ -37,6 +43,7 @@ public class Enigma {
                     isValid = false;
                     break;
                 } else {
+                    setPositions(s);
                     isValid = true;
                 }
             }
