@@ -8,6 +8,7 @@ public class Enigma {
 
     public static String cypher(char[] message) {
         char[] outputMessage = new char[message.length];
+        rotors.setPositions(positions);
 
         for (int i = 0; i < message.length; i++) {
             if (message[i] < 'A' || message[i] > 'Z') {
