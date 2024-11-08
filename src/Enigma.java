@@ -43,6 +43,7 @@ public class Enigma {
         boolean isValid = false;
         if (s.length == 0) {
             isValid = true;
+            positions = new char[] {'A', 'A', 'A'};
         }
         else if (s.length != 3) {
             System.out.println("\nInvalid input. Please enter exactly 3 letters.");
