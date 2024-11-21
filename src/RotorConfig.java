@@ -1,15 +1,15 @@
 public class RotorConfig {
     private final char notch;
     private final char[] wiring;
-    private final char[] type;
+    private final String type;
 
     public RotorConfig(String type, char notch, String wiring) {
-        this.type = type.toCharArray();
+        this.type = type;
         this.notch = notch;
         this.wiring = wiring.toCharArray();
     }
 
-    public char[] getType() {
+    public String getType() {
         return this.type;
     }
 

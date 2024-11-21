@@ -1,27 +1,33 @@
-public class Reflector {
-    char[] reflectorWiring = "YRUHQSLDPXNGOKMIEBFZCWVJAT".toCharArray();
-    char[] reflectorWiring2 = "ABCDEFGDIJKGMKMIEBFTCVVJAT".toCharArray();
-
-    public char reflect(char c) {
-        // System.out.println(reflectorWiring[(c - 'A')]);
-        return reflectorWiring[(c - 'A')];
+public class Reflector extends Encoder {
+    public Reflector(int order, RotorConfig rotor) {
+        super(rotor, 'A');
     }
 
-    public char paperReflect(char c, int position) {
-        int index = (c - 'A' - position + 26) % 26;
-        char currentLetter = reflectorWiring2[index];
-        // System.out.println("index " + index);
-        
-        for (int i = 0; i < reflectorWiring2.length; i++) {
-            if (reflectorWiring2[i] == currentLetter && i != index) {
-                // System.out.println(i);
-                // System.out.println("reflect letter " + reflectorWiring2[i]);
-                // System.out.println("reflect letter " + (char)((i + position + 26) % 26 + 'A'));
-                // System.out.println("reflect letter " + (char)(i + 'A'));
-                return (char)(i + 'A');        
+    @Override
+    public void setForwardMap() {
+        for (int i = 0; i < this.rotor.getWiring().length; i++) {
+            for (int j = i + 1; j < this.rotor.getWiring().length; j++) {
+                if (this.rotor.getWiring()[i] == this.rotor.getWiring()[j]) {
+                    this.forwardMap.put(i, this.rotor.getWiring()[j]);
+                    this.forwardMap.put(j, this.rotor.getWiring()[i]);
+                    break;
+                }
             }
         }
-        
-        return c;
+    }
+
+    @Override
+    public int encodeForward(int c) {
+        return this.forwardMap.get(c) -'A';
+    }
+
+    @Override
+    public void setBackwardMap() {
+        throw new UnsupportedOperationException("Reflector does not support backward mapping");
+    }
+
+    @Override
+    public int encodeBackward(int c) {
+        throw new UnsupportedOperationException("Reflector does not support backward encoding");
     }
 }
