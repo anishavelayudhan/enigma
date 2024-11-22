@@ -1,5 +1,5 @@
 public class Reflector extends Encoder {
-    public Reflector(int order, RotorConfig rotor) {
+    public Reflector(RotorConfig rotor) {
         super(rotor, 'A');
     }
 
