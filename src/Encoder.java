@@ -1,8 +1,9 @@
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Encoder {
-    protected final HashMap<Integer, Character> forwardMap = new HashMap<Integer, Character>();
-    protected final HashMap<Character, Integer> backwardMap = new HashMap<Character, Integer>();
+    protected final Map<Integer, Integer> forwardMap = new HashMap<>();
+    protected final Map<Integer, Integer> backwardMap = new HashMap<>();
     protected final RotorConfig rotor;
     protected final int startingPosition;
     protected int position;
@@ -24,4 +25,6 @@ public abstract class Encoder {
     public abstract int encodeForward(int c);
 
     public abstract int encodeBackward(int c);
+
+    public abstract boolean rotate();
 }
