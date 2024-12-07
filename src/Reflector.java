@@ -6,19 +6,19 @@ public class Reflector extends Encoder {
     @Override
     public void setForwardMap() {
         for (int i = 0; i < this.rotor.getWiring().length; i++) {
-            for (int j = i + 1; j < this.rotor.getWiring().length; j++) {
-                if (this.rotor.getWiring()[i] == this.rotor.getWiring()[j]) {
-                    this.forwardMap.put(i, this.rotor.getWiring()[j]);
-                    this.forwardMap.put(j, this.rotor.getWiring()[i]);
+            for (int j = 0; j < this.rotor.getWiring().length; j++) {
+                if (i != j && this.rotor.getWiring()[i] == this.rotor.getWiring()[j]) {
+                    this.forwardMap.put(i, j);
                     break;
                 }
             }
         }
     }
 
+
     @Override
     public int encodeForward(int c) {
-        return this.forwardMap.get(c) -'A';
+        return this.forwardMap.get(c);
     }
 
     @Override
@@ -29,5 +29,10 @@ public class Reflector extends Encoder {
     @Override
     public int encodeBackward(int c) {
         throw new UnsupportedOperationException("Reflector does not support backward encoding");
+    }
+
+    @Override
+    public boolean rotate() {
+        return false;
     }
 }
