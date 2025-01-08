@@ -1,5 +1,5 @@
 # Enigma Machine
-![demo]([https://i.imgur.com/kRge8M8.png)
+![demo](https://i.imgur.com/bddQUyE.png)
 
 This project implements the Enigma Machine algorithm in Java, including the rotor and reflector functionality. It simulates the workings of the historical Enigma Machine used during World War II for encryption and decryption of messages. The code allows encoding and decoding of text using configurable rotors and a reflector, all within the console.
 
