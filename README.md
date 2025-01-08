@@ -29,7 +29,7 @@ git clone https://github.com/anishavelayudhan/enigma.git
 ```
 javac Main.java
 ```
-5. Run the program:
+4. Run the program:
 ```
 java Main
 ```
