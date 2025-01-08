@@ -36,8 +36,11 @@ java Main
 
 ## Learn More
 To learn more about Mike C. Koss' "Paper Enigma", check out his [post](https://mckoss.com/posts/paper-enigma/).
-To learn more about how the Paper Enigma is used, check out this [video](https://www.youtube.com/watch?v=UKbP3Rjxhy0)
-To learn more about how the original Enigma Machine works, check out this [video](https://youtu.be/ybkkiGtJmkM?si=t3yGqe52_aXOkqT7)
+
+To learn more about how the Paper Enigma is used, check out this [video](https://www.youtube.com/watch?v=UKbP3Rjxhy0).
+
+To learn more about how the original Enigma Machine works, check out this [video](https://youtu.be/ybkkiGtJmkM?si=t3yGqe52_aXOkqT7).
+
 
 ## License
 This project is licensed under the MIT License.
