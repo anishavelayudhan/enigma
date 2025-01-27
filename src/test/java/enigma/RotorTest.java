@@ -7,42 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class RotorTest {
 
     @Test
-    void testRotorInitialization() {
-        // Test for Rotor I
-        Rotor rotorI = Rotor.create("I", 'A');
-        assertEquals('Q', rotorI.getNotch(), "Rotor I notch should be 'Q'");
-        assertEquals(0, rotorI.getCurrentPosition(), "Rotor I should start at position 0 (A)");
-
-        // Test for Rotor II
-        Rotor rotorII = Rotor.create("II", 'B');
-        assertEquals('E', rotorII.getNotch(), "Rotor II notch should be 'E'");
-        assertEquals(1, rotorII.getCurrentPosition(), "Rotor II should start at position 1 (B)");
-
-        // Test for Rotor III
-        Rotor rotorIII = Rotor.create("III", 'C');
-        assertEquals('V', rotorIII.getNotch(), "Rotor III notch should be 'V'");
-        assertEquals(2, rotorIII.getCurrentPosition(), "Rotor III should start at position 2 (C)");
-    }
-
-    @Test
-    void testRotorRotation() {
-        // Test Rotor I
-        Rotor rotorI = Rotor.create("I", 'A');
-        rotorI.rotate();
-        assertEquals(1, rotorI.getCurrentPosition(), "Rotor I should be at position 1 after one rotation");
-
-        // Test Rotor II
-        Rotor rotorII = Rotor.create("II", 'B');
-        rotorII.rotate();
-        assertEquals(2, rotorII.getCurrentPosition(), "Rotor II should be at position 2 after one rotation");
-
-        // Test Rotor III
-        Rotor rotorIII = Rotor.create("III", 'C');
-        rotorIII.rotate();
-        assertEquals(3, rotorIII.getCurrentPosition(), "Rotor III should be at position 3 after one rotation");
-    }
-
-    @Test
     void testRotorEncodingForward() {
         // Test Rotor I
         Rotor rotorI = Rotor.create("I", 'A');

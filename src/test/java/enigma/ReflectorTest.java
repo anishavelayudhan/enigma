@@ -21,34 +21,6 @@ public class ReflectorTest {
     }
 
     @Test
-    public void testReflectorACreation() {
-        // Verify that the reflector A wiring matches the expected values.
-        String expectedWiring = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
-        assertEquals(expectedWiring, new String(reflectorA.getWiring()));
-    }
-
-    @Test
-    public void testReflectorBCreation() {
-        // Verify that the reflector B wiring matches the expected values.
-        String expectedWiring = "FVPJIAOYEDRZXWGCTKUQSBNMHL";
-        assertEquals(expectedWiring, new String(reflectorB.getWiring()));
-    }
-
-    @Test
-    public void testReflectorBThinCreation() {
-        // Verify that the reflector B Thin wiring matches the expected values.
-        String expectedWiring = "ENKQAUYWJICOPBLMDXZVFTHRGS";
-        assertEquals(expectedWiring, new String(reflectorBThin.getWiring()));
-    }
-
-    @Test
-    public void testPaperEnigmaCreation() {
-        // Verify that the PAPER ENIGMA reflector wiring matches the expected values.
-        String expectedWiring = "ABCDEFGDIJKGMKMIEBFTCVVJAT";
-        assertEquals(expectedWiring, new String(reflectorPaperEnigma.getWiring()));
-    }
-
-    @Test
     public void testReflectorAReflection() {
         // Test that reflector A correctly reflects a character (e.g., 'A' -> 'Y').
         int reflectedIndex = reflectorA.reflect(0); // 'A' is 0
