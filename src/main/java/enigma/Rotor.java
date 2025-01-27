@@ -12,12 +12,12 @@ public class Rotor {
     private final int startingPosition;
     private int position;
 
-    // Constructor to initialize a rotor with a notch, wiring, and starting position.
-    public Rotor(char notch, String wiring, char startingPosition) {
+
+    private Rotor(char notch, String wiring, char startingPosition) {
         this.notch = notch;
         this.wiring = wiring.toCharArray();
         this.startingPosition = startingPosition - 'A'; // Convert starting position to index.
-        this.position = 0; // Initial position of the rotor.
+        this.position = 0;
 
         setForwardMap(); // Map the wiring for forward encoding.
         setBackwardMap(); // Map the wiring for backward encoding.
@@ -35,27 +35,24 @@ public class Rotor {
         };
     }
 
-    public char getNotch() {
-        return this.notch; // Return the notch position for rotor turnover.
+    private char getNotch() {
+        return this.notch;
     }
 
-    public char[] getWiring() {
-        return this.wiring; // Return the wiring configuration of the rotor.
+    private char[] getWiring() {
+        return this.wiring;
     }
 
-    // Calculate the current position of the rotor (with wrap-around).
-    public int getCurrentPosition() {
+    private int getCurrentPosition() {
         return (this.startingPosition + this.position) % 26;
     }
 
-    // Set the forward map based on rotor wiring for encoding.
     private void setForwardMap() {
         for (int i = 0; i < this.getWiring().length; i++) {
             this.forwardMap.put(i, this.getWiring()[i] - 'A');
         }
     }
 
-    // Set the backward map based on rotor wiring for decoding.
     private void setBackwardMap() {
         for (int i = 0; i < this.getWiring().length; i++) {
             this.backwardMap.put(this.getWiring()[i] - 'A', i);
@@ -64,16 +61,14 @@ public class Rotor {
 
     // Rotate the rotor and determine if it should trigger a turnover for the next rotor.
     public boolean rotate() {
-        this.position = (this.position + 1) % 26; // Move rotor one step forward.
+        this.position = (this.position + 1) % 26;
         return (this.getCurrentPosition() == 0 || this.getCurrentPosition() == this.getNotch() - 'A' + 1);
     }
 
-    // Encode a character in the forward direction using the rotor's wiring.
     public int encodeForward(int c) {
         return (this.forwardMap.get((c + this.getCurrentPosition()) % 26) - this.getCurrentPosition() + 26) % 26;
     }
 
-    // Decode a character in the backward direction using the rotor's wiring.
     public int encodeBackward(int c) {
         return (this.backwardMap.get((c + this.getCurrentPosition()) % 26) - this.getCurrentPosition() + 26) % 26;
     }

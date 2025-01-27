@@ -9,8 +9,7 @@ public class Reflector {
     private final char[] wiring;
     private static final String PAPER_ENIGMA = "PAPER ENIGMA";
 
-    // Constructor that initializes the reflector with a given type and wiring.
-    public Reflector(String type, String wiring) {
+    private Reflector(String type, String wiring) {
         this.wiring = wiring.toCharArray();
         if (Objects.equals(type, PAPER_ENIGMA)) {
             setPaperEnigmaMap();
@@ -31,14 +30,14 @@ public class Reflector {
     }
 
     // Sets the standard reflector map using the wiring.
-    public void setMap() {
+    private void setMap() {
         for (int i = 0; i < this.getWiring().length; i++) {
             this.map.put(i, this.getWiring()[i] - 'A');
         }
     }
 
     // Sets the special Paper Enigma reflector map with duplicate mappings.
-    public void setPaperEnigmaMap() {
+    private void setPaperEnigmaMap() {
         for (int i = 0; i < this.getWiring().length; i++) {
             for (int j = 0; j < this.getWiring().length; j++) {
                 if (i != j && this.getWiring()[i] == this.getWiring()[j]) {
@@ -49,12 +48,10 @@ public class Reflector {
         }
     }
 
-    // Returns the wiring configuration of the reflector.
-    public char[] getWiring() {
+    private char[] getWiring() {
         return this.wiring;
     }
 
-    // Reflects the input character index using the reflector's map.
     public int reflect(int c) {
         return this.map.get(c);
     }

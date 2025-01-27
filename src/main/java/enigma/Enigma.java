@@ -7,7 +7,7 @@ public class Enigma {
     private final List<Rotor> rotors;
     private final Reflector reflector;
 
-    // Constructor initializes the rotors and reflector based on the given configuration.
+
     public Enigma(String[] nameRotor, char[] startingPositions, String nameReflector) {
         this.rotors = new ArrayList<>();
 
@@ -17,7 +17,6 @@ public class Enigma {
             this.rotors.add(rotor);
         }
 
-        // Create the reflector
         this.reflector = Reflector.create(nameReflector);
     }
 
@@ -27,38 +26,33 @@ public class Enigma {
 
         for (int i = 0; i < message.length; i++) {
             if (!Character.isLetter(message[i])) {
-                cypheredMessage[i] = message[i]; // Non-letter characters remain unchanged.
+                cypheredMessage[i] = message[i];
                 continue;
             }
-            int letter = message[i] - 'A'; // Convert character to index (0-25).
+            int letter = message[i] - 'A';
 
-            rotateRotor(); // Rotate rotors before encoding each character.
+            rotateRotor();
 
-            // Encode the letter through each rotor (forward direction).
             for (Rotor rotor : this.rotors) {
                 letter = rotor.encodeForward(letter);
             }
 
-            // Reflect the letter using the configured reflector.
             letter = this.reflector.reflect(letter);
 
-            // Encode the letter through each rotor (reverse direction).
             for (int j = this.rotors.size() - 1; j >= 0; j--) {
                 letter = this.rotors.get(j).encodeBackward(letter);
             }
 
-            // Convert the letter index back to character and store it.
             cypheredMessage[i] = (char) (letter + 'A');
         }
 
         return new String(cypheredMessage);
     }
 
-    // Rotate the rotors, handling the rotor turnover logic.
+
     private void rotateRotor() {
         boolean shouldRotate = true;
 
-        // Rotate rotors one by one, stop if any rotor doesn't rotate.
         for (Rotor rotor : this.rotors) {
             // Rotate further rotors if a rotor can rotate.
             if (shouldRotate) {
