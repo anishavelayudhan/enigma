@@ -6,9 +6,10 @@ import java.util.List;
 public class Enigma {
     private final List<Rotor> rotors;
     private final Reflector reflector;
+    private final Plugboard plugboard;
 
 
-    public Enigma(String[] nameRotor, char[] startingPositions, String nameReflector) {
+    public Enigma(String[] nameRotor, char[] startingPositions, String nameReflector, String plugboardPairs) {
         this.rotors = new ArrayList<>();
 
         // Create each rotor and add to the list (reverse order for proper wiring).
@@ -18,6 +19,7 @@ public class Enigma {
         }
 
         this.reflector = Reflector.create(nameReflector);
+        this.plugboard = new Plugboard(plugboardPairs);
     }
 
     // Cipher the message by processing each character through the rotors and reflector.
@@ -29,7 +31,8 @@ public class Enigma {
                 cypheredMessage[i] = message[i];
                 continue;
             }
-            int letter = message[i] - 'A';
+
+            int letter = plugboard.swap(message[i]) - 'A';
 
             rotateRotor();
 
@@ -43,7 +46,7 @@ public class Enigma {
                 letter = this.rotors.get(j).encodeBackward(letter);
             }
 
-            cypheredMessage[i] = (char) (letter + 'A');
+            cypheredMessage[i] = plugboard.swap((char) (letter + 'A'));
         }
 
         return new String(cypheredMessage);
